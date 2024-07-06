@@ -2,26 +2,26 @@
 Host WordPress Website using AWS Management Console and CLI
 
 # Overview
-This project demonstrates how to host a WordPress website on AWS, utilizing various AWS services to ensure high availability, security, and scalability. The project resources and scripts are available in the GitHub repository.
+This project demonstrates how to host a WordPress website on AWS, utilizing various AWS services to ensure high availability, security, and scalability. 
 
 # Architecture
 The architecture includes the following components:
-- VPC: A Virtual Private Cloud (VPC) with both public and private subnets across two availability zones.
-- Internet Gateway: Facilitates connectivity between VPC instances and the Internet.
-- Security Groups: Acts as a network firewall.
-- Availability Zones: Enhances system reliability and fault tolerance.
-- Public Subnets: For infrastructure components like the NAT Gateway and Application Load Balancer.
-- Private Subnets: Positions web servers (EC2 instances) for enhanced security.
-- EC2 Instance Connect Endpoint: For secure connections to assets within both public and private subnets.
-- NAT Gateway: Enables instances in private subnets to access the Internet.
-- EC2 Instances: Hosts the website.
-- Application Load Balancer: Distributes web traffic to an Auto Scaling Group of EC2 instances.
-- Auto Scaling Group: Manages EC2 instances automatically to ensure website availability.
-- SNS: Alerts about activities within the Auto Scaling Group.
-- EFS: Provides a shared file system.
-- RDS: Manages the database.
-- Route 53: Manages the domain name and DNS records.
-- Certificate Manager: Secures application communications.
+- **VPC**: A Virtual Private Cloud (VPC) with both public and private subnets across two availability zones.
+- **Internet Gateway**: Facilitates connectivity between VPC instances and the Internet.
+- **Security Groups**: Acts as a network firewall.
+- **Availability Zones**: Enhances system reliability and fault tolerance.
+- **Public Subnets**: For infrastructure components like the NAT Gateway and Application Load Balancer.
+- **Private Subnets**: Positions web servers (EC2 instances) for enhanced security.
+- **EC2 Instance Connect Endpoint**: For secure connections to assets within both public and private subnets.
+- **NAT Gateway**: Enables instances in private subnets to access the Internet.
+- **EC2 Instances**: Hosts the website.
+- **Application Load Balancer**: Distributes web traffic to an Auto Scaling Group of EC2 instances.
+- **Auto Scaling Group**: Manages EC2 instances automatically to ensure website availability.
+- **SNS**: Alerts about activities within the Auto Scaling Group.
+- **EFS**: Provides a shared file system.
+- **RDS**: Manages the database.
+- **Route 53**: Manages the domain name and DNS records.
+- **Certificate Manager**: Secures application communications.
   
 # Prerequisites
 - AWS account with permissions to create and manage EC2 instances, VPC, and other resources.
@@ -50,6 +50,25 @@ Set up an RDS instance for the WordPress database.
 Use AWS Certificate Manager to secure communications.
 11. Route 53
 Register your domain and configure DNS records using Route 53.
+
+# Lessons Learned
+This project provided my first hands-on experience with DevOps and AWS for provisioning infrastructure. It offered valuable insights into cloud architecture and networking. While there were challenges, each one provided an opportunity for growth and improvement.
+
+## Example Issues and Resolutions:
+Issue: Images Not Displaying on WordPress
+- Attempted reinstalling, but the issue persisted.
+- Inspected the problem using Chrome's error messages.
+- Researched solutions via AWS documentation, Reddit, and Stack Overflow.
+- Ultimately, decided to restart the project from scratch but couldn't pinpoint the exact mistake.
+  
+Issue: Bugs When Using vi Editor
+- Experienced issues with line duplication, despite previous experience with vim.
+- Determined it was a command line error, resolved by reconnecting to the EC2 instance.
+
+Issue: Unable to Terminate EC2 Instance Due to Network Interface in Use
+- Spent considerable time identifying the service causing the issue.
+- Used Amazon CloudTrail logs to trace resource creation.
+- Discovered it was an RDS proxy service remaining active even after terminating the main RDS instance.
 
 # Scripts to Install WordPress
 ```bash
@@ -192,4 +211,4 @@ chown apache:apache -R /var/www/html
 
 # restart the webserver
 sudo service httpd restart
-```
+``
